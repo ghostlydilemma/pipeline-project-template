@@ -1,0 +1,36 @@
+<div block="employee-absence-overview" class="mat-elevation-z2">
+  <div elem="loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+
+  <mat-card elem="employee-detail">
+    <mat-card-title>Absences</mat-card-title>
+    <mat-card-content>
+      <table mat-table [dataSource]="data" elem="table">
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef>Start date</th>
+          <td mat-cell data-qa="cell-startDate" *matCellDef="let row">{{ row.startDate | date }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="endDate">
+          <th mat-header-cell *matHeaderCellDef>End date</th>
+          <td mat-cell data-qa="cell-endDate" *matCellDef="let row">{{ row.endDate | date }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef>Occasion</th>
+          <td mat-cell data-qa="cell-type" *matCellDef="let row">{{ row.type | titlecase }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [length]="resultsLength"
+        [pageSize]="pageSize"
+        aria-label="Select page of employees"
+      ></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

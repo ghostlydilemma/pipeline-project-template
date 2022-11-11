@@ -1,0 +1,28 @@
+:host {
+  display: block;
+
+  .employee-management-dialog-form {
+    .mat-form-field {
+      width: 100%;
+    }
+
+    &__salary-input {
+      text-align: right;
+      -moz-appearance: textfield;
+
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        display: none;
+      }
+    }
+
+    &__salary-input-form-field {
+      ::ng-deep .mat-form-field-appearance-outline {
+        .mat-form-field-prefix,
+        .mat-form-field-suffix {
+          top: -0.1em;
+        }
+      }
+    }
+  }
+}

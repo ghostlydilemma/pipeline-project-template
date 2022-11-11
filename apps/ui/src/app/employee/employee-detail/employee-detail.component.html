@@ -1,0 +1,40 @@
+<ng-container *ngIf="employee; else employeeNotAvailable">
+  <mat-card block="employee-detail">
+    <mat-card-title data-qa="employee-detail-title"
+      >{{ employee.firstname }} {{ employee.middlename }} {{ employee.lastname }}</mat-card-title
+    >
+    <mat-card-subtitle data-qa="employee-detail-subtitle">{{ employee.dateOfBirth | date }}</mat-card-subtitle>
+    <mat-card-content>
+      <p data-qa="employee-detail-address">Address: {{ employee.address }}</p>
+      <p data-qa="employee-detail-salary">Salary: {{ employee.salary }}€</p>
+      <p data-qa="employee-detail-active">
+        Active:
+        <pipeline-project-template-employee-activity-status
+          elem="activity-status"
+          [status]="employee.isActive"
+          [activeInCompany]="employee.activeInCompany"
+          [inline]="true"
+        ></pipeline-project-template-employee-activity-status>
+      </p>
+      <p data-qa="employee-detail-department">Department: {{ employee.department.name }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <pipeline-project-template-employee-employment-change-button
+        data-qa="employment-change-button"
+        elem="action-button"
+        [employee]="employee"
+      ></pipeline-project-template-employee-employment-change-button>
+      <pipeline-project-template-employee-management-button
+        elem="action-button"
+        data-qa="management-edit-button"
+        employmentChangeType="edit"
+        [employee]="employee"
+      ></pipeline-project-template-employee-management-button>
+    </mat-card-actions>
+  </mat-card>
+  <pipeline-project-template-employee-absence-overview
+    block="employee-absences"
+    [employeeId]="employee.id"
+  ></pipeline-project-template-employee-absence-overview>
+</ng-container>
+<ng-template #employeeNotAvailable>This employee does not exist</ng-template>

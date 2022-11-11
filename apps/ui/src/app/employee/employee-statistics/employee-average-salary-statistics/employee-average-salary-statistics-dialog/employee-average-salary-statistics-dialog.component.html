@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Employee Stats: Average Salary</h1>
+<mat-dialog-content>
+  <div block="employee-average-salary-dialog">
+    <mat-form-field>
+      <mat-label>Department</mat-label>
+      <mat-select
+        [value]="departmentId$ | async"
+        (selectionChange)="departmentId$.next($event.value)"
+        placeholder="No department filter"
+        data-qa="department-selector"
+      >
+        <mat-option>None</mat-option>
+        <ng-container *ngFor="let deparment of departments">
+          <mat-option [value]="deparment.id">{{ deparment.name }}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <ng-container *ngIf="departmentId$ | async as departmentId; else allDepartments">
+      <span elem="average-salary">Average salary for the department {{ departmentId }}: {{ salary }}€</span>
+    </ng-container>
+    <ng-template #allDepartments>
+      <span elem="average-salary">Average salary: {{ salary }}€</span>
+    </ng-template>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close="">Close</button>
+</mat-dialog-actions>
