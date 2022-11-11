@@ -1,0 +1,91 @@
+<h1 mat-dialog-title>{{ data.action | titlecase }} Employee</h1>
+<mat-dialog-content block="employee-management-dialog-form">
+  <form [formGroup]="employeeForm">
+    <mat-form-field data-qa="create-input-field-firstname">
+      <mat-label>Firstname</mat-label>
+      <input data-qa="create-input-firstname" matInput placeholder="Charles" formControlName="firstname" required />
+      <mat-error *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)">
+        <span *ngIf="firstname?.errors?.['required']"> Firstname is required </span>
+        <span *ngIf="firstname?.errors?.['pattern']">Not a valid name</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field data-qa="create-input-field-middlename">
+      <mat-label>Middlename</mat-label>
+      <input matInput placeholder="Lupin" formControlName="middlename" data-qa="create-input-middlename" />
+      <mat-error *ngIf="middlename?.invalid && (middlename?.dirty || middlename?.touched)">
+        <span *ngIf="middlename?.errors?.['pattern']">Not a valid name</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field data-qa="create-input-field-lastname">
+      <mat-label>Lastname</mat-label>
+      <input matInput placeholder="Perry" formControlName="lastname" required data-qa="create-input-lastname" />
+      <mat-error *ngIf="lastname?.invalid && (lastname?.dirty || lastname?.touched)">
+        <span *ngIf="lastname?.errors?.['required']"> Lastname is required </span>
+        <span *ngIf="lastname?.errors?.['pattern']">Not a valid name</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field data-qa="create-input-field-address">
+      <mat-label>Address</mat-label>
+      <input
+        matInput
+        data-qa="create-input-address"
+        placeholder="911 Hart Country Lane"
+        formControlName="address"
+        required
+      />
+      <mat-error *ngIf="address?.invalid && (address?.dirty || address?.touched)">
+        <span *ngIf="address?.errors?.['required']">Address is required</span>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field data-qa="create-input-field-date_of_birth">
+      <mat-label>Date of birth</mat-label>
+      <input
+        matInput
+        data-qa="create-input-date_of_birth"
+        [matDatepicker]="picker"
+        formControlName="dateOfBirth"
+        required
+      />
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="dateOfBirth?.invalid && (dateOfBirth?.dirty || dateOfBirth?.touched)">
+        <span *ngIf="dateOfBirth?.errors?.['required']">Date of birth is required</span>
+      </mat-error>
+    </mat-form-field>
+    <div elem="salary-input-form-field">
+      <mat-form-field floatLabel="always" data-qa="create-input-field-salary">
+        <mat-label>Salary</mat-label>
+        <input
+          matInput
+          data-qa="create-input-salary"
+          type="number"
+          elem="salary-input"
+          formControlName="salary"
+          placeholder="0"
+          required
+        />
+        <span matPrefix>€&nbsp;</span>
+        <span matSuffix>.00</span>
+        <mat-error *ngIf="salary?.invalid && (salary?.dirty || salary?.touched)">
+          <span *ngIf="salary?.errors?.['required']"> Salary is required or input invalid </span>
+          <span *ngIf="salary?.errors?.['min']">This input is too small</span>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <mat-form-field data-qa="create-input-field-department">
+      <mat-label>Department</mat-label>
+      <mat-select formControlName="department" data-qa="create-input-department">
+        <mat-option *ngFor="let department of departments" [value]="department.id">
+          {{ department.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button mat-button (click)="saveDialog()" data-qa="submit" cdkFocusInitial>
+    {{ (this.data.action === 'edit' ? 'save' : this.data.action) | titlecase }}
+  </button>
+</mat-dialog-actions>

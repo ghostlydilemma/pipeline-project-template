@@ -1,0 +1,30 @@
+:host {
+  .employee-activity-status {
+    display: inline-flex;
+    flex-direction: var(--employee-activity-flex-direction);
+    align-items: center;
+    color: #bdbdbd;
+
+    &__indicator {
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.4rem;
+      border-radius: 100%;
+
+      &--active {
+        background: green;
+      }
+
+      &--inactive {
+        background: red;
+      }
+    }
+
+    &__date-range {
+      &--current {
+        color: #424242;
+      }
+    }
+  }
+}

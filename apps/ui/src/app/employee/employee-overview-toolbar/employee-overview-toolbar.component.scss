@@ -1,0 +1,9 @@
+:host {
+  display: block;
+
+  .employee-overview-toolbar {
+    &__action-button {
+      margin-right: 0.5rem;
+    }
+  }
+}

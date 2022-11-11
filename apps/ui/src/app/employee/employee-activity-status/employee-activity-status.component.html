@@ -1,0 +1,22 @@
+<span block="employee-activity-status">
+  <span [ngSwitch]="status">
+    <span elem="indicator" mod="active" *ngSwitchCase="true"></span>
+    <span elem="indicator" mod="inactive" *ngSwitchCase="false"></span>
+  </span>
+  <ng-container *ngIf="getLastThreeArrayValues(activeInCompany) as lastThreeEmployments">
+    <span
+      *ngIf="activeInCompany.length - lastThreeEmployments.length as overflow"
+      [title]="overflow + ' entries hidden'"
+    >
+      ...
+    </span>
+    <span
+      elem="date-range"
+      *ngFor="let dateRange of lastThreeEmployments; index as i"
+      [mod]="i === lastThreeEmployments.length - 1 ? 'current' : ''"
+    >
+      {{ inline && i !== 0 ? '; ' : '' }}
+      {{ dateRange.startDate | date }} - {{ dateRange.endDate | date }}
+    </span>
+  </ng-container>
+</span>

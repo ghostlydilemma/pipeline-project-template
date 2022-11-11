@@ -1,0 +1,16 @@
+:host {
+  display: block;
+
+  .employee-average-salary-dialog {
+    margin: 1rem 0;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+    &__average-salary {
+      margin-top: 1rem;
+    }
+  }
+}

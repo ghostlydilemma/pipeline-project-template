@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Test E2E Watch" type="js.build_tools.nx">
+    <node-interpreter value="project" />
+    <nxfile value="$PROJECT_DIR$/nx.json" />
+    <tasks>
+      <task value="ui-e2e:e2e" />
+    </tasks>
+    <arguments value="--watch" />
+    <envs />
+    <method v="2" />
+  </configuration>
+</component>
