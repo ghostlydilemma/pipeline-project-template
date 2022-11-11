@@ -1,5 +1,5 @@
 # First Stage: Install dependencies and Build frontend
-FROM node:18 as builder
+FROM node:19 as builder
 WORKDIR /app
 COPY . .
 RUN npm install
