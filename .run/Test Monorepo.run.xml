@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Test Monorepo" type="CompoundRunConfigurationType">
+    <toRun name="Test API" type="js.build_tools.nx" />
+    <toRun name="Test UI" type="js.build_tools.nx" />
+    <method v="2" />
+  </configuration>
+</component>

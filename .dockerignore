@@ -1,0 +1,10 @@
+dist
+node_modules
+*.log
+.angular
+.idea
+.run
+.github
+.husky
+data
+.env

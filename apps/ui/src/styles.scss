@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$blue-palette, 200);
+$my-accent: mat.define-palette(mat.$lime-palette, 300);
+
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+    ),
+  )
+);
+
+@include mat.core-theme($my-theme);
+
+@include mat.button-theme($my-theme);
+
+@include mat.select-theme($my-theme);
+
+@include mat.datepicker-theme($my-theme);
+
+@include mat.form-field-theme($my-theme);
+
+@include mat.progress-spinner-theme($my-theme);
+
+@include mat.toolbar-theme($my-theme);
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}

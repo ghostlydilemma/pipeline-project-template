@@ -1,0 +1,71 @@
+<div block="employee-table" class="mat-elevation-z8">
+  <div elem="loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+
+  <pipeline-project-template-employee-toolbar></pipeline-project-template-employee-toolbar>
+
+  <div elem="container">
+    <table mat-table [dataSource]="data" elem="table">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let row" data-qa="cell-name">
+          {{ row.firstname }} {{ row.middlename }} {{ row.lastname }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Address</th>
+        <td mat-cell *matCellDef="let row">{{ row.address }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="dateOfBirth">
+        <th mat-header-cell *matHeaderCellDef>Date of Birth</th>
+        <td mat-cell *matCellDef="let row">{{ row.dateOfBirth | date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="salary">
+        <th mat-header-cell *matHeaderCellDef>Salary</th>
+        <td mat-cell *matCellDef="let row">{{ row.salary }}€</td>
+      </ng-container>
+
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef>Active</th>
+        <td mat-cell *matCellDef="let row">
+          <pipeline-project-template-employee-activity-status
+            elem="active-indicator-container"
+            [status]="row.isActive"
+            [activeInCompany]="row.activeInCompany"
+          ></pipeline-project-template-employee-activity-status>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="department">
+        <th mat-header-cell *matHeaderCellDef>Department</th>
+        <td mat-cell *matCellDef="let row">{{ row.department.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let row">
+          <pipeline-project-template-employee-management-button
+            data-qa="management-edit-button"
+            elem="action-button"
+            employmentChangeType="edit"
+            [employee]="row"
+          ></pipeline-project-template-employee-management-button>
+          <pipeline-project-template-employee-employment-change-button
+            data-qa="employment-change-button"
+            elem="action-button"
+            [employee]="row"
+          ></pipeline-project-template-employee-employment-change-button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="navigateToEmployee(row.id)"></tr>
+    </table>
+  </div>
+
+  <mat-paginator [length]="resultsLength" [pageSize]="pageSize" aria-label="Select page of employees"></mat-paginator>
+</div>

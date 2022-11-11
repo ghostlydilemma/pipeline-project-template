@@ -1,0 +1,56 @@
+root: true
+ignorePatterns:
+  - '*.scss'
+  - '*.html'
+plugins:
+  - '@nrwl/nx'
+  - 'unused-imports'
+  - 'promise'
+parserOptions:
+  ecmaVersion: 2022
+extends:
+  - prettier
+  - plugin:promise/recommended
+overrides:
+  - files:
+      - '*.ts'
+      - '*.tsx'
+      - '*.js'
+      - '*.jsx'
+    rules:
+      '@nrwl/nx/enforce-module-boundaries':
+        - error
+        - enforceBuildableLibDependency: true
+          allow: []
+          depConstraints:
+            - sourceTag: '*'
+              onlyDependOnLibsWithTags:
+                - '*'
+      no-unused-vars: 'off'
+      unused-imports/no-unused-imports: error
+      unused-imports/no-unused-vars:
+        - warn
+        - vars: all
+          varsIgnorePattern: ^_
+          args: after-used
+          argsIgnorePattern: ^_
+  - files:
+      - '*.ts'
+      - '*.tsx'
+    extends:
+      - 'plugin:@nrwl/nx/typescript'
+    rules: {}
+  - files:
+      - '*.js'
+      - '*.jsx'
+    extends:
+      - 'plugin:@nrwl/nx/javascript'
+    rules: {}
+  - files:
+      - '*.spec.ts'
+      - '*.spec.tsx'
+      - '*.spec.js'
+      - '*.spec.jsx'
+    env:
+      jest: true
+    rules: {}
