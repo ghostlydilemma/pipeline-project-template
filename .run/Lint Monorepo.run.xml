@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Lint Monorepo" type="CompoundRunConfigurationType">
+    <toRun name="Lint API" type="js.build_tools.nx" />
+    <toRun name="Lint API Interfaces" type="js.build_tools.nx" />
+    <toRun name="Lint UI" type="js.build_tools.nx" />
+    <toRun name="Lint UI e2e" type="js.build_tools.nx" />
+    <method v="2" />
+  </configuration>
+</component>

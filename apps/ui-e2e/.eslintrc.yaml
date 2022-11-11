@@ -1,0 +1,20 @@
+extends:
+  - 'plugin:cypress/recommended'
+  - ../../.eslintrc.yaml
+ignorePatterns:
+  - '!**/*'
+overrides:
+  - files:
+      - '*.ts'
+      - '*.tsx'
+      - '*.js'
+      - '*.jsx'
+    rules:
+      promise/catch-or-return: 'off'
+      promise/always-return: 'off'
+      promise/no-nesting: 'off'
+  - files:
+      - src/plugins/index.js
+    rules:
+      '@typescript-eslint/no-var-requires': 'off'
+      no-undef: 'off'

@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Serve Monorepo" type="CompoundRunConfigurationType">
+    <toRun name="Serve API" type="js.build_tools.nx" />
+    <toRun name="Serve UI" type="js.build_tools.nx" />
+    <method v="2" />
+  </configuration>
+</component>

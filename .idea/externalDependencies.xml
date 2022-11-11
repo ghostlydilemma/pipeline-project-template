@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalDependencies">
+    <plugin id="com.github.iguissouma.nxconsole" />
+    <plugin id="com.nekofar.milad.intellij.nestjs" />
+    <plugin id="cucumber-javascript" />
+    <plugin id="intellij.prettierJS" />
+  </component>
+</project>
